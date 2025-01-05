@@ -6,6 +6,7 @@
   cfg = config.internal.modules.common;
 in {
   imports = [
+    ./locale.nix
     ./packages.nix
   ];
 
@@ -18,5 +19,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     internal.modules.common.packages.enable = lib.mkDefault true;
+    internal.modules.common.locale.enable = lib.mkDefault true;
   };
 }
