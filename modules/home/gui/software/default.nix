@@ -7,6 +7,7 @@
 in {
   imports = [
     ./spotify.nix
+    ./firefox.nix
   ];
 
   options.internal.modules.gui.software = {
@@ -15,5 +16,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     internal.modules.gui.software.spotify.enable = lib.mkDefault true;
+    internal.modules.gui.software.firefox.enable = lib.mkDefault true;
   };
 }

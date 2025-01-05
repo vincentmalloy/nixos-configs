@@ -156,6 +156,7 @@
           lib.mapAttrsToList
           (n: v: v)
           config.flake.nixosModules
+          ++ [inputs.nur.modules.nixos.default]
           ++ [os.stylix.nixos]
           ++ lib.optionals (configuration.home-manager.enable) [
             os.home-manager
