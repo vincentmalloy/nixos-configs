@@ -172,6 +172,11 @@
                     ++ [
                       (configPath + "/${hostname}" + /home.nix)
                       inputs.spicetify-nix.homeManagerModules.default
+                      (import ./settings.nix {
+                        inherit lib config;
+                        inherit (cfg) root;
+                        configRoot = configPath + /${hostname};
+                      })
                     ];
                 };
               };

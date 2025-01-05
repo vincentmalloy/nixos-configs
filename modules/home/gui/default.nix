@@ -8,6 +8,7 @@
 in {
   imports = [
     ./software
+    ./desktop-environment
   ];
 
   options.internal.modules.gui = {
@@ -32,9 +33,24 @@ in {
         default browser
       '';
     };
+    launcher = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.wofi;
+      description = ''
+        default app launcher
+      '';
+    };
+    fileManager = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.nautilus;
+      description = ''
+        default file manager
+      '';
+    };
   };
 
   config = lib.mkIf cfg.enable {
     internal.modules.gui.software.enable = lib.mkDefault true;
+    internal.modules.gui.desktop-environment.enable = lib.mkDefault true;
   };
 }
