@@ -163,12 +163,16 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                extraSpecialArgs = {inherit inputs;};
                 users.${internal.settings.username} = {...}: {
                   imports =
                     (lib.mapAttrsToList
                       (n: v: v)
                       config.flake.homeModules)
-                    ++ [(configPath + "/${hostname}" + /home.nix)];
+                    ++ [
+                      (configPath + "/${hostname}" + /home.nix)
+                      inputs.spicetify-nix.homeManagerModules.default
+                    ];
                 };
               };
             }
