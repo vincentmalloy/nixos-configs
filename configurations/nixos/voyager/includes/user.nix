@@ -11,6 +11,8 @@
     ];
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   services.displayManager.autoLogin = {
     user = config.internal.settings.username;
   };
