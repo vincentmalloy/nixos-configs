@@ -12,11 +12,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.displayManager.sddm = {
+    services.displayManager = {
+      autoLogin.enable = true;
+      sddm = {
       enable = true;
       wayland.enable = true;
       wayland.compositor = "kwin";
       theme = "tokyo-night-sddm";
+    };
     };
 
     environment.systemPackages = [
