@@ -6,6 +6,8 @@
   cfg = config.internal.modules.terminal;
 in {
   imports = [
+    ./eza.nix
+    ./oh-my-posh
     ./direnv.nix
     ./zsh.nix
   ];
@@ -20,5 +22,8 @@ in {
   config = lib.mkIf cfg.enable {
     internal.modules.terminal.direnv.enable = true;
     internal.modules.terminal.zsh.enable = true;
+
+    programs.yazi.enable = true;
+    programs.helix.enable = true;
   };
 }
