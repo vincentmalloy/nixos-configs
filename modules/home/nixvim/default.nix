@@ -7,20 +7,19 @@
   ...
 }: let
   nixvim-key = "nixvim";
-    # if (myLib.isWSL osConfig)
-    # then "nixvim-wsl"
-    # else "nixvim";
+  # if (myLib.isWSL osConfig)
+  # then "nixvim-wsl"
+  # else "nixvim";
 in {
-  imports =
-    [
-      inputs.${nixvim-key}.homeManagerModules.nixvim
-      ./autocomplete.nix
-      ./theme.nix
-      ./options.nix
-      ./keymaps.nix
-      ./plugins
-    ];
-    # ++ lib.optionals (myLib.isWSL osConfig) [./wsl.nix];
+  imports = [
+    inputs.${nixvim-key}.homeManagerModules.nixvim
+    ./autocomplete.nix
+    ./theme.nix
+    ./options.nix
+    ./keymaps.nix
+    ./plugins
+  ];
+  # ++ lib.optionals (myLib.isWSL osConfig) [./wsl.nix];
 
   config = {
     programs.nixvim = {
