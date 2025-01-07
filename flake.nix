@@ -12,10 +12,6 @@
 
     nur.url = "github:nix-community/NUR";
     nixvim.url = "github:nix-community/nixvim";
-    # hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    # hyprland-plugins.inputs.hyprland.follows = "hyprland";
-    # hyprpaper.url = "github:hyprwm/hyprpaper";
     stylix.url = "github:danth/stylix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
