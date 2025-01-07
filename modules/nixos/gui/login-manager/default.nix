@@ -15,11 +15,11 @@ in {
     services.displayManager = {
       autoLogin.enable = true;
       sddm = {
-      enable = true;
-      wayland.enable = true;
-      wayland.compositor = "kwin";
-      theme = "tokyo-night-sddm";
-    };
+        enable = true;
+        wayland.enable = true;
+        wayland.compositor = "kwin";
+        theme = "tokyo-night-sddm";
+      };
     };
 
     environment.systemPackages = [

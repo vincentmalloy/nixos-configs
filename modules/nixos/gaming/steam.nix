@@ -1,8 +1,10 @@
-{config, lib, ...}:
-let
-  cfg = config.internal.modules.gaming.steam;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.internal.modules.gaming.steam;
+in {
   options.internal.modules.gaming.steam = {
     enable = lib.mkEnableOption "steam config";
   };

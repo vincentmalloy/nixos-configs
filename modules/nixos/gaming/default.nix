@@ -1,14 +1,17 @@
-{config, lib, ...}:
-let
-  cfg = config.internal.modules.gaming;
-in
 {
-  options.internal.modules.gaming = lib.mkOption {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.internal.modules.gaming;
+in {
+  options.internal.modules.gaming = {
+    enable = lib.mkOption {
       type = lib.types.bool;
       default = true;
     };
   };
-  
+
   imports = [
     ./emulation.nix
     ./steam.nix

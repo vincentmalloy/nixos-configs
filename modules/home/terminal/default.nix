@@ -1,8 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.internal.modules.terminal;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.internal.modules.terminal;
+in {
   imports = [
     ./direnv.nix
     ./zsh.nix
