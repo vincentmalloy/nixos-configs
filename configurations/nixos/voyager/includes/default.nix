@@ -4,5 +4,6 @@
     ./boot.nix
     ./networking.nix
     ./services.nix
+    ./user.nix
   ];
 }
