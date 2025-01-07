@@ -19,7 +19,7 @@ in {
       ./options.nix
       ./keymaps.nix
       ./plugins
-    ]
+    ];
     # ++ lib.optionals (myLib.isWSL osConfig) [./wsl.nix];
 
   config = {
