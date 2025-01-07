@@ -20,6 +20,9 @@ in {
 
     programs.kitty = {
       enable = true;
+      settings = {
+        cursor_trail = 3;
+      };
       extraConfig = ''
         modify_font cell_height 110%
       '';
