@@ -1,0 +1,295 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "final_space": true,
+  "version": 1,
+  "palette": {
+    "dark": "black",
+    "light": "white",
+    "background": "p:dark",
+    "foreground": "p:light",
+    "os-win": "#01a6f0",
+    "os-linux": "#e95420",
+    "danger-foreground": "yellow",
+    "danger-background": "red",
+    "git-foreground": "p:dark",
+    "git-background": "green",
+    "git-modified": "yellow",
+    "git-diverged": "lightYellow",
+    "git-ahead": "magenta",
+    "git-behind": "magenta"
+  },
+  "disable_notice": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "accordion",
+          "trailing_diamond": "\ue0b0",
+          "foreground": "p:dark",
+          "foreground_templates": ["{{ if .WSL }}white{{ end }}"],
+          "background": "lightBlue",
+          "background_templates": ["{{ if .WSL }}p:os-linux{{ end }}"],
+          "template": " {{.Icon}} ",
+          "properties": {
+            "windows": "\ue70f"
+          }
+        },
+        {
+          "min_width": 50,
+          "type": "shell",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "p:dark",
+          "foreground_templates": ["{{ if .WSL }}white{{ end }}"],
+          "background": "lightBlue",
+          "background-templates": ["{{ if .WSL }}p:os-linux{{ end }}"],
+          "properties": {
+            "mapped_shell_names": {
+              "pwsh": "\udb82\ude0a"
+            }
+          },
+          "template": " {{ .Name }} "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "p:foreground",
+          "background": "p:background",
+          "background_templates": ["{{ if not .Writable }}red{{ end }}"],
+          "properties": {
+            "folder_icon": "\uea7c",
+            "folder_separator_icon": " <transparent,p:background>\ue0bb</> ",
+            "home_icon": "\udb80\udedc",
+            "style": "agnoster_short",
+            "max_depth": 3,
+            "mapped_locations": {
+              "C:\\Temp": "\udb85\udd568",
+              "/mnt/c/Users/simon": "\ue70f\udb80\udedc",
+              "~/projects/web": "\udb81\udd9f"
+            }
+          },
+          "template": " {{ .Path }} "
+        },
+        {
+          "min_width": 120,
+          "foreground": "p:git-foreground",
+          "background": "p:git-background",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:git-modified{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git-diverged{{ end }}",
+            "{{ if gt .Ahead 0 }}p:git-ahead{{ end }}",
+            "{{ if gt .Behind 0 }}p:git-behind{{ end }}"
+          ],
+          "properties": {
+            "fetch_stash_count": true,
+            "fetch_status": true
+          },
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": " {{ .UpstreamIcon }}{{ trunc 30 .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \udb82\udd0c {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \udb80\udd35 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf51e {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        },
+        {
+          "min_width": 120,
+          "background": "darkGray",
+          "foreground": "p:dark",
+          "properties": {
+            "style": "dallas",
+            "threshold": 500
+          },
+          "template": " {{ .FormattedMs }}s ",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "type": "executiontime"
+        },
+        {
+          "min_width": 120,
+          "background": "red",
+          "background_templates": [
+            "{{ if gt .Code 0 }}red{{ else }}green{{ end }}"
+          ],
+          "foreground": "p:light",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}p:light{{ else }}p:dark{{ end }}"
+          ],
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "{{ if gt .Code 0 }} <yellow>\uf467</> {{ .Meaning }} {{ end }}",
+          "type": "status"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "command",
+          "alias": "hugo dev server",
+          "min_width": 50,
+          "background": "transparent",
+          "foreground": "magenta",
+          "style": "plain",
+          "properties": {
+            "shell": "sh",
+            "command": "ss -nltpH | grep hugo | awk '{print $4}'"
+          },
+          "template": "{{ url \"\ue0b6<p:foreground,magenta>\udb81\udd9f</>\ue0b4\" (printf \"http://%s\" .Output) }} "
+        },
+        {
+          "min_width": 50,
+          "background": "transparent",
+          "foreground": "p:foreground",
+          "style": "powerline",
+          "powerline_symbol": "\ue0d6",
+          "template": "[{{ if .SSHSession }}\uf817 {{ end }}<d>{{ .UserName }}</d>]@[<d>{{ .HostName }}</d>] ",
+          "type": "session"
+        },
+        {
+          "min_width": 120,
+          "type": "time",
+          "style": "powerline",
+          "powerline_symbol": "\ue0d6",
+          "background": "p:background",
+          "foreground": "p:foreground",
+          "properties": {
+            "time_format": "02/01/2006 - 15:04"
+          },
+          "template": " \udb80\udced {{ .CurrentDate | date .Format }} "
+        },
+        {
+          "min_width": 120,
+          "type": "owm",
+          "style": "powerline",
+          "powerline_symbol": "\ue0d6",
+          "background": "p:background",
+          "foreground": "p:foreground",
+          "template": "{{.Weather}} {{.Temperature}}{{.UnitIcon}} ",
+          "properties": {
+            "api_key": "f357dab7a75033a9381f40bf7a1cfe1f",
+            "location": "IDAR-OBERSTEIN,DE",
+            "units": "metric",
+            "http_timeout": 500,
+            "cache_timeout": 10
+          }
+        },
+        {
+          "min_width": 120,
+          "type": "connection",
+          "style": "powerline",
+          "powerline_symbol": "\ue0d6",
+          "background": "p:background",
+          "foreground": "p:foreground",
+          "background_templates": [
+            "{{ if and (not (eq .Type \"wifi\")) (not (eq .Type \"ethernet\")) }}red{{ end }}"
+          ],
+          "template": " {{ if eq .Type \"wifi\"}}\uf1eb {{ .SSID }}{{ else if eq .Type \"ethernet\"}}\udb81\udef3 {{ else }}\udb83\udc9b {{ end }} "
+        },
+        {
+          "min_width": 120,
+          "type": "command",
+          "alias": "disk-space",
+          "style": "powerline",
+          "powerline_symbol": "\ue0d6",
+          "foreground": "p:foreground",
+          "foreground_templates": ["{{ if lt .Output 30 }}p:dark{{ end }}"],
+          "background": "p:background",
+          "background_templates": [
+            "{{ if lt .Output 30 }}green{{ end }}",
+            "{{ if gt .Output 75 }}red{{ end }}"
+          ],
+          "template": " \udb80\udeca {{ .Output }}%",
+          "properties": {
+            "command": "echo \"${$(df / | tail -n +2 | awk '{ print $5 }')//\\%}\"",
+            "shell": "zsh"
+          }
+        },
+        {
+          "min_width": 120,
+          "type": "sysinfo",
+          "alias": "ram",
+          "style": "powerline",
+          "powerline_symbol": "\ue0d6",
+          "foreground": "p:foreground",
+          "foreground_templates": [
+            "{{ if lt .PhysicalPercentUsed 50 }}p:dark{{ end }}"
+          ],
+          "background": "p:background",
+          "background_templates": [
+            "{{ if lt .PhysicalPercentUsed 50 }}green{{ end }}",
+            "{{ if gt .PhysicalPercentUsed 90 }}red{{ end }}"
+          ],
+          "template": " \udb81\ude1a {{ round .PhysicalPercentUsed .Precision }}% ",
+          "properties": {
+            "precision": 2
+          }
+        },
+        {
+          "min_width": 50,
+          "type": "battery",
+          "style": "accordion",
+          "leading_diamond": "\ue0b2",
+          "background": "p:background",
+          "background_templates": [
+            "{{if eq \"Charging\" .State.String}}blue{{end}}",
+            "{{if eq \"Discharging\" .State.String}}{{ if lt .Percentage 25 }}red{{ else if lt .Percentage 50 }}lightRed{{ else if lt .Percentage 75 }}yellow{{ else }}p:dark{{ end }}{{end}}",
+            "{{if eq \"Full\" .State.String}}green{{end}}"
+          ],
+          "foreground": "p:foreground",
+          "foreground_templates": [
+            "{{if eq \"Charging\" .State.String}}p:dark{{end}}",
+            "{{if eq \"Discharging\" .State.String}}{{ if lt .Percentage 25 }}p:foreground{{ else if lt .Percentage 50 }}p:foreground{{ else if lt .Percentage 75 }}p:dark{{ else }}p:foreground{{ end }}{{end}}",
+            "{{if eq \"Full\" .State.String}}p:dark{{end}}"
+          ],
+          "properties": {
+            "discharging_icon": "\udb85\udfde",
+            "charging_icon": "\udb85\udfe0",
+            "charged_icon": "\udb85\udfe2"
+          },
+          "template": " {{ if not .Error }}{{ .Icon }}{{ if lt .Percentage 90  }}{{ .Percentage }} {{ end }}{{ end }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:foreground",
+          "background": "p:background",
+          "template": "{{ if .Root }}<p:danger-foreground,p:danger-background> \udb84\ude38</><p:danger-background,background>\ue0b0</>{{ else }}\udb81\udc23{{ end }}\u276f"
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:foreground",
+          "template": "{{ if .Env.DIRENV_FILE }} <green>\udb80\udf2a</> <d>{{ .Env.DIRENV_PACKAGES }}</d> {{ end }}"
+        }
+      ]
+    }
+  ],
+  "secondary_prompt": {
+    "background": "transparent",
+    "foreground": "p:foreground",
+    "template": "{{ if .Root }}<p:danger-foreground,p:danger-background> \udb84\ude38</><p:danger-background,background>\ue0b0</>\u276f{{ else }}<d> \u276f</>{{ end }}"
+  },
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "p:foreground",
+    "template": "{{ if .Root }}<p:danger-foreground,p:danger-background> \udb84\ude38</><p:danger-background,background>\ue0b0</>\u276f{{ else }}<d>-\u276f</>{{ end }}"
+  },
+  "console_title_template": "{{.UserName}} in {{ if eq .OS \"windows\"}}{{.PWD | replace \"~\" \"🏠\" }}{{ else }}{{ if .Env.WSL_WIN_HOME_PATH }}{{.PWD | replace .Env.WSL_WIN_HOME_PATH \"win-🏠\" | replace \"~\" \"nix-🏠\" }}{{ else }}{{.PWD | replace \"~\" \"🏠\" }}{{ end }}{{ end }} @ {{.HostName}}"
+}
