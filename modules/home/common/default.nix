@@ -7,6 +7,7 @@
 in {
   imports = [
     ./git.nix
+    ./environment.nix
   ];
 
   options.internal.modules.common = {
@@ -18,5 +19,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     internal.modules.common.git.enable = lib.mkDefault true;
+    internal.modules.common.environment.enable = lib.mkDefault true;
   };
 }
