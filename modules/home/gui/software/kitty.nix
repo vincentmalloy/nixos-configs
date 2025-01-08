@@ -1,8 +1,10 @@
-{config, lib, ...}:
-let
-  cfg = config.internal.modules.gui.software.kitty;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.internal.modules.gui.software.kitty;
+in {
   options.internal.modules.gui.software.kitty = {
     enable = lib.mkEnableOption "kitty terminal emulator cfg";
   };
