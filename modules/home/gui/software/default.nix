@@ -8,6 +8,7 @@ in {
   imports = [
     ./spotify.nix
     ./firefox.nix
+    ./kitty.nix
   ];
 
   options.internal.modules.gui.software = {
