@@ -1,12 +1,26 @@
 {
-  lib,
-  config,
+  pkgs,
   ...
-}: {
+}:
+let
+ # intro script when entering
+  intro = pkgs.writeShellScript "quakemode-intro" ''
+    #!/usr/bin/env zsh
+
+    i=0
+    while [ $i -lt 25 ]
+    do
+      echo ""
+      i=$((i+1))
+    done
+    fastfetch
+  '';
+in
+{
   wayland.windowManager.hyprland = {
     settings = {
       workspace = [
-        "special:quakemode, monitor:$primaryMonitor, gapsin:0, gapsout:0, on-created-empty:$terminal --hold neofetch"
+        "special:quakemode, monitor:$primaryMonitor, gapsin:0, gapsout:0, on-created-empty:$terminal --hold ${intro}"
       ];
       windowrulev2 = [
         "float, onworkspace:special:quakemode"
