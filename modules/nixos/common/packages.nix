@@ -15,7 +15,7 @@ in {
       git
       vim
       gnumake
-      neofetch
+      fastfetch
     ];
   };
 }
