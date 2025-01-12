@@ -1,9 +1,5 @@
-{
-  pkgs,
-  ...
-}:
-let
- # intro script when entering
+{pkgs, ...}: let
+  # intro script when entering
   intro = pkgs.writeShellScript "quakemode-intro" ''
     #!/usr/bin/env zsh
 
@@ -15,8 +11,7 @@ let
     done
     fastfetch
   '';
-in
-{
+in {
   wayland.windowManager.hyprland = {
     settings = {
       workspace = [

@@ -79,6 +79,20 @@ in {
                     }
                   ];
                 }
+                {
+                  name = "misc";
+                  bookmarks = [
+                    {
+                      name = "Bartosz Ciechanowski";
+                      url = "https://ciechanow.ski/";
+                    }
+                    {
+                      name = "Hacker News";
+                      url = "https://news.ycombinator.com";
+                      keyword = "hn";
+                    }
+                  ];
+                }
               ];
             }
             {
@@ -115,10 +129,6 @@ in {
                   url = "https://www.google.com/search?q=%s%20site%3Areddit.com";
                 }
               ];
-            }
-            {
-              name = "Bartosz Ciechanowski";
-              url = "https://ciechanow.ski/";
             }
           ];
         };

@@ -14,7 +14,7 @@ in {
     programs.zsh = {
       enable = true;
       autosuggestion.enable = true;
-      autocd = true;
+      autocd = false;
       syntaxHighlighting.enable = true;
       history = {
         ignoreAllDups = true;

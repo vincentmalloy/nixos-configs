@@ -17,6 +17,7 @@ in {
       nautilus # file browser
       gvfs # virtual file system manager (needed for nautilus mounts)
       geeqie # image viewer
+      pinta # image editor
       zathura # pdf viewer
     ];
   };
