@@ -1,11 +1,12 @@
 {
   config,
-  osConfig,
+  inputs,
   lib,
   pkgs,
   ...
 }: let
   cfg = config.internal.modules.gui.software.firefox;
+  nix-channel = "unstable";
 in {
   options.internal.modules.gui.software.firefox = {
     enable = lib.mkEnableOption "firefox browser settings";
@@ -103,6 +104,18 @@ in {
                   tags = ["wiki"];
                   keyword = "wiki";
                   url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
+                }
+                {
+                  name = "nixos package search";
+                  tags = ["nix" "nixos"];
+                  keyword = "np";
+                  url = "https://search.nixos.org/packages?channel=${nix-channel}&query=%s";
+                }
+                {
+                  name = "nixos options search";
+                  tags = ["nix" "nixos"];
+                  keyword = "no";
+                  url = "https://search.nixos.org/options?channel=${nix-channel}&query=%s";
                 }
                 {
                   name = "home manager options search";
