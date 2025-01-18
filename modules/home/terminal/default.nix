@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.internal.modules.terminal;
@@ -26,5 +27,8 @@ in {
 
     programs.yazi.enable = true;
     programs.helix.enable = true;
+    home.packages = [
+      pkgs.aerc
+    ];
   };
 }

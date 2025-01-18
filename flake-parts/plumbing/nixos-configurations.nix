@@ -184,6 +184,7 @@
             }
           ]
           ++ lib.optionals (configuration.os == "wsl") [
+            inputs.nixos-wsl.nixosModules.default
             {internal.modules.gui.enable = false;}
           ];
       in

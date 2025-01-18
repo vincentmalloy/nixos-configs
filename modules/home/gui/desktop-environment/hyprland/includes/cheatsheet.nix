@@ -1,26 +1,93 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   name = "cheatsheet";
   scriptName = name;
   workspaceName = name;
 
   toggleKey = "H";
 
-  # run before entering workspace
-  script = pkgs.writeShellScript scriptName ''
-    #!/usr/bin/env zsh
-    title=$(hyprctl -j clients | jq -r '.[] | select(.focusHistoryID==1) | .title')
-    initial_title=$(hyprctl -j clients | jq -r '.[] | select(.focusHistoryID==1) | .initialTitle')
-    echo "no elp for: ''${initial_title} - ''${title}" | nvim +Man!
-  '';
-in {
-  home.packages = with pkgs; [
-    jq
+  cheatsheets = {
+    kitty = {
+      cheatsheet = ''
+        testing kitty
+      '';
+      patternSets = [
+        {
+          title = "nvim";
+          patterns = ["vi" "vim" "nconf"];
+          cheatsheet = ''
+            testing
+            nvim
+          '';
+        }
+      ];
+    };
+  };
+
+  patternScript = lib.concatStringsSep "\n" [
+    "case $initial_title in"
+    (
+      lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (
+          initialTitle: infoset: (
+            lib.concatStringsSep "\n" [
+              (initialTitle + ")")
+              "cheatsheet='${infoset.cheatsheet}'"
+              (lib.concatStringsSep "\n" (
+                lib.lists.map (
+                  patternSet:
+                    lib.concatStringsSep "\n" [
+                      ("for pattern in " + (lib.concatStringsSep " " patternSet.patterns))
+                      "do"
+                      "if [[ $title = \"$pattern\" ]]; then"
+                      "title=${patternSet.title}"
+                      "cheatsheet='${patternSet.cheatsheet}'"
+                      "break"
+                      "fi"
+                      "done"
+                    ]
+                )
+                infoset.patternSets
+              ))
+              ";;"
+            ]
+          )
+        )
+        cheatsheets
+      )
+    )
+    "*)"
+    ";;"
+    "esac"
   ];
 
+  # run before entering workspace
+  script = pkgs.writeShellApplication {
+    name = scriptName;
+
+    runtimeInputs = with pkgs; [
+      cowsay
+      jq
+    ];
+
+    text = ''
+      cheatsheet="$(cowsay "no elp for you")"
+      title=$(hyprctl -j clients | jq -r '.[] | select(.focusHistoryID==1) | .title')
+      initial_title=$(hyprctl -j clients | jq -r '.[] | select(.focusHistoryID==1) | .initialTitle')
+
+      ${patternScript}
+
+      echo "$cheatsheet" | nvim +Man!
+    '';
+  };
+in {
   wayland.windowManager.hyprland = {
     settings = {
       workspace = [
-        "special:${workspaceName}, gapsin:0, gapsout:0, on-created-empty: $terminal ${script}"
+        "special:${workspaceName}, gapsin:0, gapsout:0, on-created-empty: $terminal ${script}/bin/${scriptName}"
       ];
       windowrulev2 = [
         "float, onworkspace:special:${workspaceName}"
@@ -35,10 +102,9 @@ in {
     extraConfig = ''
       submap = ${workspaceName}
       bindnr = , Q, submap, reset
-      bind = $mod, ${toggleKey}, sendshortcut, , Q,title:.*-${scriptName}$
+      bind = $mod, ${toggleKey}, sendshortcut, , Q,title:${scriptName}
       bind = $mod, ${toggleKey}, submap, reset
       submap = reset
     '';
   };
 }
-
