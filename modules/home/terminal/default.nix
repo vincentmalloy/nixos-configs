@@ -10,6 +10,7 @@ in {
     ./eza.nix
     ./oh-my-posh
     ./direnv.nix
+    ./helix.nix
     ./yazi.nix
     ./zsh.nix
   ];

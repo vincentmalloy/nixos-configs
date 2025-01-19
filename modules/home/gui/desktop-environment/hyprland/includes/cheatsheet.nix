@@ -11,17 +11,10 @@
 
   cheatsheets = {
     kitty = {
-      cheatsheet = ''
-        testing kitty
-      '';
       patternSets = [
         {
           title = "nvim";
           patterns = ["vi" "vim" "nconf"];
-          cheatsheet = ''
-            testing
-            nvim
-          '';
         }
       ];
     };
@@ -35,7 +28,11 @@
           initialTitle: infoset: (
             lib.concatStringsSep "\n" [
               (initialTitle + ")")
-              "cheatsheet='${infoset.cheatsheet}'"
+              (
+                if builtins.pathExists (./cheatsheets + "/${initialTitle}.txt")
+                then "cheatsheet='${(builtins.readFile (./cheatsheets + "/${initialTitle}.txt"))}'"
+                else "cheatsheet='no file exists for ${initialTitle}'"
+              )
               (lib.concatStringsSep "\n" (
                 lib.lists.map (
                   patternSet:
@@ -44,7 +41,13 @@
                       "do"
                       "if [[ $title = \"$pattern\" ]]; then"
                       "title=${patternSet.title}"
-                      "cheatsheet='${patternSet.cheatsheet}'"
+                      (
+                        if builtins.pathExists (./cheatsheets + "/${patternSet.title}.txt")
+                        then "cheatsheet='${(
+                          builtins.readFile (./cheatsheets + "/${patternSet.title}.txt")
+                        )}'"
+                        else "cheatsheet='no file exists for ${patternSet.title}'"
+                      )
                       "break"
                       "fi"
                       "done"

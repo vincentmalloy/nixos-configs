@@ -6,6 +6,7 @@
     ./hmts.nix
     ./lualine.nix
     ./lsp.nix
+    ./mini.nix
     ./telescope.nix
     ./treesitter.nix
     ./which-key.nix
