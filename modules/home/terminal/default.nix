@@ -29,6 +29,7 @@ in {
     programs.yazi.enable = true;
     programs.helix.enable = true;
     home.packages = [
+      # pkgs.nixd
       pkgs.aerc
     ];
   };

@@ -1,6 +1,6 @@
 {
-  osConfig,
-  config,
+  pkgs,
+  lib,
   ...
 }: {
   programs.helix = {
@@ -29,6 +29,23 @@
           render = true;
         };
       };
+    };
+    languages = {
+      language-server = {
+        nixd = {
+          command = lib.getExe pkgs.nixd;
+        };
+      };
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = lib.getExe pkgs.alejandra;
+          language-servers = [
+            "nixd"
+          ];
+        }
+      ];
     };
   };
 }

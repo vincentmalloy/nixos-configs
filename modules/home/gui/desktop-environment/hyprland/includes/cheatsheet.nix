@@ -84,7 +84,7 @@
 
       ${patternScript}
 
-      echo "$cheatsheet" | glow -p
+      echo "$cheatsheet" | glow -p -s dracula
     '';
   };
 in {
