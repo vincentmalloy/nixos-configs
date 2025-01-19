@@ -29,8 +29,8 @@
             lib.concatStringsSep "\n" [
               (initialTitle + ")")
               (
-                if builtins.pathExists (./cheatsheets + "/${initialTitle}.txt")
-                then "cheatsheet='${(builtins.readFile (./cheatsheets + "/${initialTitle}.txt"))}'"
+                if builtins.pathExists (./cheatsheets + "/${initialTitle}.md")
+                then "cheatsheet='${(builtins.readFile (./cheatsheets + "/${initialTitle}.md"))}'"
                 else "cheatsheet='no file exists for ${initialTitle}'"
               )
               (lib.concatStringsSep "\n" (
@@ -42,9 +42,9 @@
                       "if [[ $title = \"$pattern\" ]]; then"
                       "title=${patternSet.title}"
                       (
-                        if builtins.pathExists (./cheatsheets + "/${patternSet.title}.txt")
+                        if builtins.pathExists (./cheatsheets + "/${patternSet.title}.md")
                         then "cheatsheet='${(
-                          builtins.readFile (./cheatsheets + "/${patternSet.title}.txt")
+                          builtins.readFile (./cheatsheets + "/${patternSet.title}.md")
                         )}'"
                         else "cheatsheet='no file exists for ${patternSet.title}'"
                       )
@@ -74,6 +74,7 @@
     runtimeInputs = with pkgs; [
       cowsay
       jq
+      glow
     ];
 
     text = ''
@@ -83,7 +84,7 @@
 
       ${patternScript}
 
-      echo "$cheatsheet" | nvim +Man!
+      echo "$cheatsheet" | glow -p
     '';
   };
 in {

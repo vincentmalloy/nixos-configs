@@ -3,17 +3,16 @@
   config,
   ...
 }: {
-  # home.sessionVariables = {
-    # EDITOR = "hx";
-  # };
-
   programs.helix = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
     settings = {
       keys = {
         normal = {
-          "A-t" = "@mips<backspace>|<ret>&,[pjxs<backspace><space>r-,";
+          space = {
+            # format markdown table
+            t = "@mips\\|<ret>&,jxs\\ <ret>r-,";
+          };
         };
       };
       editor = {
@@ -32,8 +31,4 @@
       };
     };
   };
-
-  # programs.yazi = {
-    # enable = true;
-  # };
 }
