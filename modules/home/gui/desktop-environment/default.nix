@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }: let
@@ -11,6 +12,7 @@ in {
   };
 
   imports = [
+    inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
     ./hyprland
     # ./mako.nix
     # ./wofi.nix
@@ -25,7 +27,7 @@ in {
     services.mako = {
       enable = true;
       package = pkgs.mako;
-      defaultTimeout = 4000;
+      settings.defaultTimeout = 4000;
     };
 
     #wofi app launcher
@@ -37,5 +39,7 @@ in {
         content_halign = "center";
       };
     };
+
+    programs.hyprcursor-phinger.enable = true;
   };
 }

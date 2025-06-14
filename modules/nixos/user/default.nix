@@ -19,6 +19,8 @@ in {
       description = config.internal.settings.fullName;
       extraGroups = [
         "wheel"
+        "storage"
+        "networkmanager"
       ];
       shell = pkgs.zsh;
     };

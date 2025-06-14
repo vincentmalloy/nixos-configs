@@ -11,9 +11,15 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nur.url = "github:nix-community/NUR";
+    # nur.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
+    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
+    # stylix.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    # spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
+    # hyprcursor-phinger.inputs.nixpkgs.follows = "nixpkgs";
 
     # inputs for nixos on wsl2
     nixpkgs-wsl.url = "github:NixOS/nixpkgs/nixos-24.05";

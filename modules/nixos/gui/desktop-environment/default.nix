@@ -14,6 +14,9 @@ in {
     programs = {
       hyprland.enable = true; # compositor
     };
+    services = {
+      hypridle.enable = true;
+    };
     environment.systemPackages = with pkgs; [
       wl-clipboard # clipboard
       wofi # app launcher

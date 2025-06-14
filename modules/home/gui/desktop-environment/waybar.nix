@@ -40,6 +40,27 @@ in {
           reload_style_on_change = true;
           # layer = "bottom";
         };
+        voyagerScriptName = "distanceToVoyager";
+        voyagerScript = pkgs.writeShellApplication {
+          name = voyagerScriptName;
+          runtimeInputs = with pkgs; [
+            bc
+          ];
+          text =
+            /*
+            bash
+            */
+            ''
+              epoch_known="1433924220" # June 10, 2015, 10:17 UTC
+              dist_known="19569051779462.6" # distance in meters at epoch_known
+              speed_mps="16999.487261" # speed in meters per second
+              au="149597870691"
+              epoch_now=$(date +%s)
+              timediff=$(bc <<< "$epoch_now - $epoch_known")
+              distance=$(bc <<< "scale=5;($dist_known + ( $timediff * $speed_mps )) / $au")
+              echo "󰇧    $distance AU    "
+            '';
+        };
       in {
         mainBar =
           allBars
@@ -81,18 +102,7 @@ in {
               format = "{}";
               max-length = 40;
               interval = 60;
-              exec = pkgs.writeShellScript "distance-of-voyager" ''
-                #!/usr/bin/env bash
-
-                epoch_known="1433924220" # June 10, 2015, 10:17 UTC
-                dist_known="19569051779462.6" # distance in meters at epoch_known
-                speed_mps="16999.487261" # speed in meters per second
-                au="149597870691"
-                epoch_now=$(date +%s)
-                timediff=$(bc <<< "$epoch_now - $epoch_known")
-                distance=$(bc <<< "scale=5;($dist_known + ( $timediff * $speed_mps )) / $au")
-                echo "󰇧    $distance AU    "
-              '';
+              exec = "${voyagerScript}/bin/${voyagerScriptName}";
             };
           };
 

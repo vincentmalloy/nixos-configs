@@ -16,6 +16,7 @@ in {
       vim
       gnumake
       fastfetch
+      gtop
     ];
   };
 }

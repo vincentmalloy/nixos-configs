@@ -37,6 +37,9 @@ in {
     # github cli
     programs.gh = {
       enable = true;
+      settings = {
+        git_protocol = "https";
+      };
     };
   };
 }

@@ -4,20 +4,19 @@
 
 ### Scrolling
 
-| Action           | Shortcut            |
-|------------------|---------------------|
-| Scroll line up   | ctrl+shift+up       |
-| Scroll line down | ctrl+shift+down     |
-| Scroll page up   | ctrl+shift+page_up  |
-| Scroll page down | ctrl+shift+page_down|
-| Scroll to top    | ctrl+shift+home     |
-| Scroll to bottom | ctrl+shift+end      |
-
+| Action           | Shortcut             |
+| ---------------- | -------------------- |
+| Scroll line up   | ctrl+shift+up        |
+| Scroll line down | ctrl+shift+down      |
+| Scroll page up   | ctrl+shift+page_up   |
+| Scroll page down | ctrl+shift+page_down |
+| Scroll to top    | ctrl+shift+home      |
+| Scroll to bottom | ctrl+shift+end       |
 
 ### Tabs management
 
 | Action            | Shortcut         |
-|-------------------|------------------|
+| ----------------- | ---------------- |
 | New tab           | ctrl+shift+t     |
 | Close tab         | ctrl+shift+q     |
 | Next tab          | ctrl+shift+right |
@@ -29,7 +28,7 @@
 ### Other keyboard shortcuts
 
 | Action                               | Shortcut                        |
-|--------------------------------------|---------------------------------|
+| ------------------------------------ | ------------------------------- |
 | Copy to clipboard                    | ctrl+shift+c                    |
 | Paste from clipboard                 | ctrl+shift+v                    |
 | Paste from selection                 | ctrl+shift+s                    |
@@ -53,18 +52,15 @@
 
 ### Shell integration
 
-
 | Action                         | Shortcut                     |
-|--------------------------------|------------------------------|
+| ------------------------------ | ---------------------------- |
 | View output of last command    | crtl+shift+g                 |
 | Prev/next prompt in scrollback | crtl+shift+z / crtl+shitft+x |
-
-
 
 ### Windows management
 
 | Action                | Shortcut                                    |
-|-----------------------|---------------------------------------------|
+| --------------------- | ------------------------------------------- |
 | New window            | ctrl+shift+enter                            |
 | Switch to next layout | ctrl+shift+l                                |
 | New OS window         | ctrl+shift+n                                |
@@ -75,7 +71,6 @@
 | Move window backward  | ctrl+shift+b                                |
 | Move window to top    | ctrl+shift+`                                |
 | Focus specific window | ctrl+shift+1, ctrl+shift+2 ... ctrl+shift+0 |
-
 
 ## Mappable actions
 
@@ -109,8 +104,6 @@
 - **scroll_page_down**: Scroll down by one page. Default shortcut: ctrl+shift+page_down
 - **scroll_page_up**: Scroll up by one page. Default shortcut: ctrl+shift+page_up
 
-
-
 ### Windows management
 
 - **close_other_windows_in_tab**: Close all windows in the tab other than the currently active window.
@@ -141,8 +134,6 @@
 - **toggle_marker**: Toggle the current marker on/off
 - **create_marker**: Create a new marker
 
-
-
 ### Tab management
 
 - **detach_tab**: Detach a tab, moving it to another OS Window
@@ -156,14 +147,13 @@
 - **select_tab**: Interactively select a tab to switch to
 - **set_tab_title**: Change the title of the active tab. Default shortcut: ctrl+shift+alt+t
 
-
 ### Miscellaneous
 
 - **send_text**: Send the specified text to the active window. Default shortcut: ctrl+shift+alt+h
 - **signal_child**: Send the specified SIGNAL to the foreground process in the active window.
 - **clear_terminal**: Clear the terminal. Default shortcut: ctrl+shift+delete
 - **combine**: Combine multiple actions and map to a single keypress. The syntax is:
-    map key combine <separator> action1 <separator> action2 <separator> action3 ...
+  map key combine <separator> action1 <separator> action2 <separator> action3 ...
 - **disable_ligatures_in**: Turn on/off ligatures in the specified window.
 - **discard_event**: Discard this event completely ignoring it.
 - **edit_config_file**: Edit the kitty.conf config file in your favorite text editor. Default shortcut: ctrl+shift+f2
@@ -176,5 +166,3 @@
 - **remote_control**: Run a remote control command.
 - **set_colors**: Change colors in the specified windows.
 - **show_kitty_env_vars**: Show the environment variables that the kitty process sees.
-
-

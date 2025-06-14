@@ -15,7 +15,6 @@ in {
       config.internal.modules.gui.browser # browser
       config.internal.modules.gui.terminal # terminal emulator
       nautilus # file browser
-      gvfs # virtual file system manager (needed for nautilus mounts)
       geeqie # image viewer
       pinta # image editor
       zathura # pdf viewer

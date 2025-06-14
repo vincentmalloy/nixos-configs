@@ -14,7 +14,12 @@
       patternSets = [
         {
           title = "nvim";
-          patterns = ["vi" "vim" "nconf"];
+          patterns = [
+            "nvim"
+            "vim"
+            "vi"
+            "nconf"
+          ];
         }
       ];
     };
@@ -39,7 +44,8 @@
                     lib.concatStringsSep "\n" [
                       ("for pattern in " + (lib.concatStringsSep " " patternSet.patterns))
                       "do"
-                      "if [[ $title = \"$pattern\" ]]; then"
+                      "pattern=\"^$pattern(\\s.*)?$\""
+                      "if [[ $title =~ $pattern ]]; then"
                       "title=${patternSet.title}"
                       (
                         if builtins.pathExists (./cheatsheets + "/${patternSet.title}.md")
@@ -78,9 +84,9 @@
     ];
 
     text = ''
-      cheatsheet="$(cowsay "no elp for you")"
       title=$(hyprctl -j clients | jq -r '.[] | select(.focusHistoryID==1) | .title')
       initial_title=$(hyprctl -j clients | jq -r '.[] | select(.focusHistoryID==1) | .initialTitle')
+      cheatsheet="$(cowsay "no elp for $initial_title")"
 
       ${patternScript}
 

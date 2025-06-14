@@ -60,7 +60,7 @@ in {
         c = "clear";
         caldav = "CALCURSE_CALDAV_PASSWORD=$(keepassxc-cli show -sa password ~/Nextcloud/Passwords/Passwords_Personal.kdbx \"web/hosting/things remote cloud\") calcurse-caldav";
       };
-      initExtra =
+      initContent =
         # zsh
         ''
           # colored man pages

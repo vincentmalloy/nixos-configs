@@ -2,7 +2,7 @@
   programs.nixvim = {
     plugins.image = {
       enable = true;
-      hijackFilePatterns = [
+      settings.hijack_file_patterns = [
         "*.png"
         "*.jpg"
         "*.jpeg"

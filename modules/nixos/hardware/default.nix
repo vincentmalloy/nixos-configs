@@ -8,6 +8,7 @@ in {
   imports = [
     ./network-printing.nix
     ./nvidia.nix
+    ./storage.nix
   ];
   options.internal.modules.hardware = {
     enable = lib.mkOption {

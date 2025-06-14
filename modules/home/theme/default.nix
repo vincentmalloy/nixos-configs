@@ -3,6 +3,7 @@
   config,
   osConfig,
   pkgs,
+  inputs,
   ...
 }: let
   cfg = config.internal.modules.theme;

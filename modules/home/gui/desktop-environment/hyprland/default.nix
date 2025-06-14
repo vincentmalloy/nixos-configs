@@ -28,6 +28,7 @@ in {
       #   inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprwinwrap
       # ];
       settings = {
+        ecosystem.no_update_news = true;
         # plugin.hyprwinwrap.class = "kitty-bg";
         misc = {
           "disable_hyprland_logo" = true;
@@ -52,6 +53,7 @@ in {
         exec-once = [
           "waybar"
           "hypridle"
+          "udiskie"
         ];
         # "$mod" = "SUPER";
         bind =
