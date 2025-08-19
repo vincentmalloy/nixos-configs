@@ -111,9 +111,9 @@ in {
           "$mod, mouse:273, resizewindow"
         ];
         monitor = [
-          "DP-1, preferred, 0x0, 1.75"
-          "DP-2, preferred, auto-right, 1"
-          "DP-3, preferred, auto-left, 1"
+          "DP-1, preferred, 0x0, 1.666667"
+          "DP-2, preferred, auto-left, 1"
+          "DP-3, preferred, auto-right, 1"
         ];
         decoration = {
           blur = {

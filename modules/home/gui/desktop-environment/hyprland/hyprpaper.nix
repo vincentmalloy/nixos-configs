@@ -18,9 +18,9 @@
         "${config.xdg.dataHome}/images/desktop/desktop_right.jpg"
       ];
       wallpaper = [
-        "DP-1, ${config.xdg.dataHome}/images/desktop/desktop_right.jpg"
+        "DP-1, ${config.xdg.dataHome}/images/desktop/desktop_mid.jpg"
         "DP-2, ${config.xdg.dataHome}/images/desktop/desktop_left.jpg"
-        "HDMI-A-1, ${config.xdg.dataHome}/images/desktop/desktop_mid.jpg"
+        "DP-3, ${config.xdg.dataHome}/images/desktop/desktop_right.jpg"
       ];
     };
   };

@@ -65,7 +65,7 @@ in {
         mainBar =
           allBars
           // {
-            output = "HDMI-A-1";
+            output = "DP-1";
 
             modules-left = [
               "hyprland/workspaces"
